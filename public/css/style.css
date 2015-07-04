@@ -24,3 +24,27 @@ a i{
 a i:hover{
 	color: #48237C;
 }
+
+
+
+
+
+article img{
+	  border-radius: 50%;
+	  border-color: #fff;
+	
+	
+    
+   
+}
+
+article span {
+	vertical-align: text-top;
+	text-align: justify;
+}
+
+
+.resaltar{
+	color: #CC3C00;
+	font-weight: 500;
+}
