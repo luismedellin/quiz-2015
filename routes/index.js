@@ -4,6 +4,9 @@ var router = express.Router();
 var quizController = require('../controllers/quiz_controller');
 //console.log('DEBUG:'+quiz_controller);
 
+// Autoload de comandos con :quizId
+router.param('quizId', quizController.load); //autoload :quizId
+
 router.get('/quizes', 						quizController.index);
 router.get('/quizes/:quizId(\\d)',			quizController.show);
 router.get('/quizes/:quizId(\\d)/answer', 	quizController.answer);
