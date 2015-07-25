@@ -17,11 +17,28 @@ exports.load = function (req, res, next, quizId) {
 };
 
 exports.index = function (req, res) {
-  models.Quiz.findAll().then(function (quizes) {
-    res.render('quizes/index.ejs', { quizes: quizes});
-  }).catch(function (error) {
-      next(error);
-  });
+  //almacena el parametro a buscar
+  var search=req.query.search;
+  //si no ingresa ningun parametro de busqueda, listo todos
+  //console.log("valor:"+req.query.search);
+  if(search===undefined){
+    models.Quiz.findAll().then(function (quizes) {
+      res.render('quizes/index.ejs', { quizes: quizes});
+    }).catch(function (error) {
+        next(error);
+    });
+  }
+  //si deseo buscar por palabra clave
+  else{
+      //delimitar el comodin
+      search='%'+search+'%';
+      search=search.replace(' ','%');
+      models.Quiz.findAll({where: ["pregunta like ?", search]}).then(function (quizes) {
+        res.render('quizes/index.ejs', { quizes: quizes});
+      }).catch(function (error) {
+          next(error);
+      });
+  }
 };
 
 // GET /quizes/question
