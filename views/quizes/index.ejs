@@ -11,6 +11,11 @@
 <% var i; for (i=0; i< quizes.length; i++) { %>
 	<tr>
 		<td><a href='quizes/<%= quizes[i].id %>'><%= quizes[i].pregunta %></a></td>
+		<td>
+			<select name="tema">
+				<option value="<%= quizes[i].tema %>"><%= quizes[i].tema %></option>
+			</select>
+		</td>
 		<td><a href='quizes/<%= quizes[i].id %>/edit'><button>Editar</button></a></td>
 		<td>
 			<form method='post' action='quizes/<%= quizes[i].id %>?_method=delete'>

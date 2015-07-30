@@ -28,21 +28,51 @@ var sequelize = new Sequelize(DB_name, user, pwd,
 
 // Importar la definicion de la tabla Quiz en quiz.js
 var Quiz = sequelize.import(path.join(__dirname,'quiz'));
-
 exports.Quiz = Quiz; // exportar definición de tabla Quiz
+
+
+// Importar la definicion de la tabla Quiz en quiz.js
+var Tema = sequelize.import(path.join(__dirname,'tema'));
+exports.Tema = Tema; // exportar definición de tabla Tema
 
 // sequelize.sync() crea e inicializa tabla de preguntas en DB
 sequelize.sync().then(function() {
-  // then(..) ejecuta el manejador una vez creada la tabla
+  // then(..) ejecuta el manejador una vez creada la tabla Quiz
   Quiz.count().then(function (count){
     if(count === 0) {   // la tabla se inicializa solo si está vacía
       Quiz.create({ pregunta: 'Capital de Italia',
-      	            respuesta: 'Roma'
+      	            respuesta: 'Roma',
+                    tema: 'humanidades'
       	         });
       Quiz.create({ pregunta: 'Capital de Portugal',
-                    respuesta: 'Lisboa'
-                 })
-      .then(function(){console.log('Base de datos inicializada')});
+                    respuesta: 'Lisboa',
+                    tema: 'otro'
+                 });
     };
   });
+  
+
+  // then(..) ejecuta el manejador una vez creada la tabla Tema
+  Tema.count().then(function (count){
+    if(count === 0) {   // la tabla se inicializa solo si está vacía
+      Tema.create({ valor: 'otro',
+                    texto: 'Otro'
+            });
+      Tema.create({ valor: 'humanidades',
+                          texto: 'Humanidades'
+                  });                
+      Tema.create({ valor: 'ocio',
+                          texto: 'Ocio'
+                  });
+      Tema.create({ valor: 'ciencia',
+                          texto: 'Ciencia'
+                  });
+      Tema.create({ valor: 'tecnologia',
+                          texto: 'Tecnología'
+                  })
+      .then(function(){console.log('Base de datos inicializada')});
+      
+    };
+  });
+
 });
