@@ -11,6 +11,7 @@
 <% var i; for (i=0; i< quizes.length; i++) { %>
 	<tr>
 		<td><a href='quizes/<%= quizes[i].id %>'><%= quizes[i].pregunta %></a></td>
+		<%if(session.user){%>
 		<td>
 			<select name="tema">
 				<option value="<%= quizes[i].tema %>"><%= quizes[i].tema %></option>
@@ -24,7 +25,10 @@
 				</button>
 			</form>
 		</td>
+		<% } %>
 	</tr>	
 <% } %>
 </table>
-<a href='/quizes/new'><button type='button'>Crear pregunta</button></a>
+<%if(session.user){%>
+	<a href='/quizes/new'><button type='button'>Crear pregunta</button></a>
+<% } %>
