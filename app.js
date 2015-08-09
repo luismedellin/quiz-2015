@@ -40,6 +40,32 @@ app.use(function (req, res, next) {
     next();
 });
 
+//autologout de la sesion
+app.use(function (req, res, next) {
+    //si el usuario se ha autenticado
+    if(req.session.user){
+        //capturo la fecha actual
+        var now=new Date().getTime();
+        //si no se ha inicializado el último login 
+        if(req.session.user.ultimoLogin===0){
+            req.session.user.ultimoLogin=now;
+        }
+        //calculo la diferencia entre la última transacción
+        var dif=now-+(req.session.user.ultimoLogin);
+        //si han pasado mas de dos minutos destruyo la sesión del usuario
+        //if(dif>1000*2){
+        if(dif>1000*60*2){
+            //sino actualizo el tiempo de la ultima transacción
+            //destruyo la sesión
+            delete req.session.user;
+        }else{
+            console.log('Actualiza sesión,segundos:'+dif/1000);
+            req.session.user.ultimoLogin=now;
+        }
+    }
+    next();
+});
+
 app.use('/', routes);
 
 // catch 404 and forward to error handler
@@ -74,6 +100,10 @@ app.use(function(err, req, res, next) {
         errors: []
     });
 });
+
+
+
+
 
 
 module.exports = app;
