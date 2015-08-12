@@ -1,0 +1,10 @@
+<h2>Estadisticas</h2>
+
+
+<ul>
+	<li>El número de preguntas: <span class='resaltado'><%= data.nPreguntas %></span></li>
+	<li>El número de comentarios totales: <span class='resaltado'><%= data.nComentarios %></span></li>
+	<li>El número medio de comentarios por pregunta: <span class='resaltado'><%= Math.round(data.nPromComent*100)/100 %></span></li>
+	<li>El número de preguntas sin comentarios: <span class='resaltado'><%= data.nPregSinComen %></span></li>
+	<li>El número de preguntas con comentarios: <span class='resaltado'><%= data.nPregConComen %></span></li>
+</ul>

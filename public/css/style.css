@@ -29,14 +29,9 @@ a i:hover{
 
 
 
-
-
 article img{
 	  border-radius: 50%;
-	  border-color: #fff;
-	
-	
-    
+	  border-color: #fff;	
    
 }
 
@@ -49,4 +44,12 @@ article span {
 .resaltar{
 	color: #CC3C00;
 	font-weight: 500;
+}
+
+ul li {
+	text-align: left;
+}
+
+.resaltado{
+	color: #752E7F;
 }

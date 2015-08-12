@@ -35,6 +35,8 @@ exports.Quiz = Quiz; // exportar definición de tabla Quiz
 var Tema = sequelize.import(path.join(__dirname,'tema'));
 exports.Tema = Tema; // exportar definición de tabla Tema
 
+exports.sequelize= sequelize;//exportamos BD para estadísticas.
+
 
 //Importacion de la tabla comment
 var Comment = sequelize.import(path.join(__dirname,'comment'));
